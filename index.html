@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AutoForte — Oficina Mecânica · Revisões, Travões, Pneus e Diagnóstico</title>
+<meta name="description" content="Oficina mecânica multimarca: revisões, mudança de óleo, travões, pneus, diagnóstico eletrónico e ar condicionado. Orçamento gratuito e garantia de 12 meses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --gray:#f3f4f6;
+    --gray-2:#e5e7eb;
+    --dark:#16191d;
+    --dark-2:#22262b;
+    --orange:#ff6a13;
+    --orange-dark:#e2560a;
+    --ink:#16191d;
+    --muted:#5f6670;
+    --shadow:0 18px 44px rgba(22,25,29,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased}
+  img{display:block;width:100%;height:100%;object-fit:cover;color:transparent}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:"Roboto Condensed",Arial Narrow,sans-serif;font-weight:800;line-height:1.05;text-transform:uppercase;letter-spacing:.005em}
+  .container{width:min(1560px,92%);margin-inline:auto}
+  section{padding:104px 0}
+  .eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.8rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
+  .eyebrow::before{content:"";width:26px;height:4px;background:var(--orange)}
+  .section-head{max-width:880px;margin-bottom:56px}
+  .section-head.center{text-align:center;margin:0 auto 56px}
+  .section-head h2{font-size:clamp(2.4rem,4.6vw,4rem)}
+  .section-head h2 span{color:var(--orange)}
+  .section-head p{color:var(--muted);margin-top:14px;font-size:1.08rem}
+  .dark{background:var(--dark);color:#fff}
+  .dark .section-head p{color:#a9b0b8}
+  .ph{background:linear-gradient(135deg,#2b3036,#1a1d21);overflow:hidden;position:relative}
+  .ph img{transition:transform .9s ease}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 30px;font-family:"Roboto Condensed",sans-serif;font-weight:700;font-size:1.05rem;letter-spacing:.06em;text-transform:uppercase;border:2px solid transparent;border-radius:6px;cursor:pointer;transition:background .25s,color .25s,transform .2s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-orange{background:var(--orange);color:#fff}
+  .btn-orange:hover{background:var(--orange-dark)}
+  .btn-white{background:#fff;color:var(--ink)}
+  .btn-outline{border-color:rgba(255,255,255,.5);color:#fff}
+  .btn-outline:hover{border-color:var(--orange);color:var(--orange)}
+  .btn-wa{background:#25d366;color:#fff}
+  .btn-wa:hover{background:#1eb457}
+
+  /* TOPBAR */
+  .topbar{background:var(--orange);color:#fff;font-size:.9rem;font-weight:600}
+  .topbar .container{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:42px;flex-wrap:wrap}
+  .topbar a{font-weight:800}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:50;background:var(--dark);color:#fff;border-bottom:1px solid rgba(255,255,255,.06)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:80px;gap:20px}
+  .logo{display:flex;align-items:center;gap:10px;font-family:"Roboto Condensed",sans-serif;font-weight:800;font-size:1.7rem;text-transform:uppercase}
+  .logo .mark{width:44px;height:44px;border-radius:8px;background:var(--orange);display:grid;place-items:center;font-size:1.3rem}
+  .logo b{color:var(--orange)}
+  .nav ul{display:flex;gap:30px;list-style:none;font-weight:600}
+  .nav ul a{opacity:.88}
+  .nav ul a:hover{opacity:1;color:var(--orange)}
+  .nav-right{display:flex;align-items:center;gap:12px}
+  .nav-right .btn{padding:12px 22px;font-size:.95rem}
+  .menu-toggle{display:none;background:none;border:0;font-size:1.8rem;cursor:pointer;color:#fff}
+
+
+  /* IDIOMAS */
+  .lang{position:relative}
+  .lang-btn{display:flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;border-radius:6px;font:inherit;font-weight:600;font-size:.82rem;letter-spacing:.08em;cursor:pointer;transition:.3s}
+  .lang-btn:hover{border-color:var(--orange)}
+  .flag{width:22px;height:16px;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.15);flex:none}
+  .caret{font-size:.6rem;opacity:.7}
+  .nav ul.lang-menu{display:block;gap:0;font-size:.92rem;letter-spacing:0;text-transform:none}
+  .lang-menu{position:absolute;right:0;top:calc(100% + 12px);background:var(--dark-2);border:1px solid rgba(255,255,255,.08);border-radius:10px;box-shadow:0 18px 44px rgba(0,0,0,.28);list-style:none;padding:8px;min-width:210px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:.25s;z-index:70}
+  .lang.open .lang-menu{opacity:1;visibility:visible;transform:none}
+  .lang-menu button{display:flex;align-items:center;gap:12px;width:100%;padding:10px 12px;border:0;background:none;font:inherit;color:#fff;border-radius:6px;cursor:pointer;text-align:left}
+  .lang-menu button:hover{background:#2e333a}
+  .lang-menu button.active{background:#2e333a;color:var(--orange);font-weight:700}
+
+  /* HERO */
+  .hero{position:relative;min-height:84vh;display:flex;align-items:center;color:#fff;padding:90px 0;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;z-index:-2}
+  .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(22,25,29,.96) 0%,rgba(22,25,29,.82) 45%,rgba(22,25,29,.3) 100%)}
+  .hero h1{font-size:clamp(3rem,7vw,6.6rem);max-width:900px;margin-bottom:22px}
+  .hero h1 span{color:var(--orange)}
+  .hero p{font-size:1.18rem;color:#d0d5db;max-width:600px;margin-bottom:26px}
+  .checks{list-style:none;display:grid;gap:10px;margin-bottom:34px}
+  .checks li{display:flex;align-items:center;gap:12px;font-weight:600}
+  .checks li::before{content:"✓";flex:none;width:26px;height:26px;border-radius:6px;background:var(--orange);display:grid;place-items:center;font-size:.85rem;font-weight:800}
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+  .hero-rating{position:absolute;right:5%;bottom:10%;background:#fff;color:var(--ink);border-radius:14px;padding:22px 26px;box-shadow:var(--shadow);text-align:center}
+  .hero-rating strong{display:block;font-family:"Roboto Condensed",sans-serif;font-size:3rem;line-height:1}
+  .hero-rating .stars{color:#f5a623;letter-spacing:3px}
+  .hero-rating small{color:var(--muted)}
+
+  /* MARCAS */
+  .brands{background:var(--dark-2);color:#9aa2ab;padding:30px 0}
+  .brands .container{display:flex;align-items:center;gap:40px;flex-wrap:wrap;justify-content:space-between}
+  .brands strong{color:#fff;font-family:"Roboto Condensed",sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:1.05rem}
+  .brands ul{display:flex;gap:34px;list-style:none;flex-wrap:wrap;font-family:"Roboto Condensed",sans-serif;font-weight:700;font-size:1.15rem;text-transform:uppercase;letter-spacing:.04em}
+
+  /* SERVIÇOS */
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .svc{background:var(--gray);border-radius:12px;padding:32px 28px;border-bottom:4px solid transparent;transition:transform .3s,border-color .3s,background .3s}
+  .svc:hover{transform:translateY(-6px);border-color:var(--orange);background:#fff;box-shadow:var(--shadow)}
+  .svc .ic{width:58px;height:58px;border-radius:10px;background:var(--dark);display:grid;place-items:center;font-size:1.6rem;margin-bottom:18px}
+  .svc h3{font-size:1.45rem;margin-bottom:8px}
+  .svc p{color:var(--muted);font-size:.96rem}
+
+  /* PREÇOS */
+  .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .price-item{background:var(--dark-2);border-radius:12px;padding:28px 30px;display:flex;justify-content:space-between;align-items:center;gap:20px;border:1px solid rgba(255,255,255,.06)}
+  .price-item h3{font-size:1.35rem}
+  .price-item p{color:#a9b0b8;font-size:.92rem;margin-top:4px}
+  .price-item .val{text-align:right;flex:none}
+  .price-item .val small{display:block;color:#a9b0b8;font-size:.8rem}
+  .price-item .val b{font-family:"Roboto Condensed",sans-serif;font-size:2.3rem;color:var(--orange);line-height:1}
+  .price-note{color:#a9b0b8;margin-top:28px;font-size:.92rem;text-align:center}
+
+  /* COMO FUNCIONA */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;counter-reset:st}
+  .step{position:relative;padding:34px 28px;border:2px solid var(--gray-2);border-radius:12px}
+  .step .n{font-family:"Roboto Condensed",sans-serif;font-size:3.6rem;font-weight:800;color:var(--orange);line-height:1;margin-bottom:12px}
+  .step h3{font-size:1.4rem;margin-bottom:8px}
+  .step p{color:var(--muted)}
+
+  /* PORQUÊ */
+  .why{background:var(--gray)}
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+  .why-imgs{position:relative;height:clamp(520px,42vw,700px)}
+  .why-imgs .a{position:absolute;inset:0 18% 14% 0;border-radius:14px}
+  .why-imgs .b{position:absolute;inset:46% 0 0 44%;border-radius:14px;border:8px solid var(--gray)}
+  .why-imgs .years{position:absolute;left:-20px;bottom:4%;background:var(--orange);color:#fff;border-radius:12px;padding:22px 26px;text-align:center}
+  .why-imgs .years strong{display:block;font-family:"Roboto Condensed",sans-serif;font-size:3rem;line-height:1}
+  .why-imgs .years span{font-weight:600;font-size:.9rem}
+  .why h2{font-size:clamp(2.3rem,4vw,3.6rem);margin-bottom:18px}
+  .why h2 span{color:var(--orange)}
+  .why-grid > div > p{color:var(--muted);font-size:1.06rem;margin-bottom:28px}
+  .why-list{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .why-item{background:#fff;border-radius:12px;padding:20px;display:flex;gap:14px}
+  .why-item .ic{font-size:1.5rem;flex:none}
+  .why-item strong{display:block}
+  .why-item small{color:var(--muted)}
+
+  /* OPINIÕES */
+  .r-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .review{background:var(--gray);border-radius:12px;padding:32px;border-top:4px solid var(--orange)}
+  .review .stars{color:#f5a623;letter-spacing:3px;margin-bottom:12px}
+  .review p{font-size:1.04rem;margin-bottom:18px}
+  .review strong{display:block}
+  .review small{color:var(--muted)}
+
+  /* ORÇAMENTO */
+  .quote-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:start}
+  .quote-info h2{font-size:clamp(2.3rem,4vw,3.6rem);margin-bottom:16px}
+  .quote-info h2 span{color:var(--orange)}
+  .quote-info > p{color:#a9b0b8;margin-bottom:28px}
+  .tow{background:var(--orange);border-radius:12px;padding:24px 26px;display:flex;align-items:center;gap:16px;margin-bottom:24px}
+  .tow .ic{font-size:2.2rem}
+  .tow strong{display:block;font-family:"Roboto Condensed",sans-serif;font-size:1.3rem;text-transform:uppercase}
+  .tow a{font-size:1.6rem;font-weight:800}
+  .c-list{display:grid;gap:18px}
+  .c-list > div{display:flex;gap:14px}
+  .c-list .ic{font-size:1.3rem}
+  .c-list strong{display:block}
+  .c-list span{color:#a9b0b8}
+  .hours{width:100%;border-collapse:collapse}
+  .hours td{padding:3px 0;color:#a9b0b8}
+  .hours td:last-child{text-align:right;color:#fff;font-weight:700}
+  .hours tr.today td{color:var(--orange)}
+  .form{background:#fff;color:var(--ink);border-radius:16px;padding:clamp(28px,4vw,48px)}
+  .form h3{font-size:2rem;margin-bottom:22px}
+  .fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .field{display:flex;flex-direction:column;gap:6px}
+  .field.full{grid-column:span 2}
+  .field label{font-size:.85rem;font-weight:700}
+  .field input,.field select,.field textarea{border:2px solid var(--gray-2);border-radius:8px;padding:13px 14px;font:inherit;color:var(--ink);background:#fff;outline:none}
+  .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--orange)}
+  .field textarea{min-height:100px;resize:vertical}
+  .form .btn{width:100%;margin-top:22px}
+  .form-note{text-align:center;color:var(--muted);font-size:.86rem;margin-top:12px}
+
+  /* FAQ */
+  .faq{max-width:1100px;margin:0 auto;display:grid;gap:12px}
+  .faq details{background:var(--gray);border-radius:12px;padding:22px 26px}
+  .faq summary{font-weight:700;font-size:1.06rem;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--orange);font-size:1.5rem;line-height:1}
+  .faq details[open] summary::after{content:"–"}
+  .faq details p{color:var(--muted);margin-top:10px}
+
+  .map{height:420px}
+  .map iframe{width:100%;height:100%;border:0;filter:grayscale(.5)}
+
+  footer{background:var(--dark);color:#a9b0b8;padding:60px 0 28px}
+  .foot{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:34px}
+  footer .logo{color:#fff}
+  footer p{margin-top:14px;max-width:420px}
+  footer h4{color:#fff;margin-bottom:12px;font-family:"Roboto Condensed",sans-serif;text-transform:uppercase;letter-spacing:.06em}
+  footer li{list-style:none;margin-bottom:8px}
+  footer a:hover{color:var(--orange)}
+  .copy{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;text-align:center;font-size:.86rem}
+
+  .wa-float{position:fixed;right:22px;bottom:22px;width:60px;height:60px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;font-size:1.7rem;box-shadow:0 10px 24px rgba(37,211,102,.45);z-index:60;transition:transform .2s}
+  .wa-float:hover{transform:scale(1.08)}
+
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:1200px){
+    .svc-grid,.steps{grid-template-columns:repeat(2,1fr)}
+    .price-grid{grid-template-columns:repeat(2,1fr)}
+    .nav ul{gap:20px}
+    .hero-rating{display:none}
+  }
+  @media (max-width:1000px){
+    .why-grid,.quote-grid{grid-template-columns:1fr;gap:56px}
+    .r-grid{grid-template-columns:1fr}
+    .foot{grid-template-columns:1fr}
+    .why-imgs .years{left:0}
+  }
+  @media (max-width:900px){
+    .nav ul{display:none}
+    .nav ul.open{display:flex;flex-direction:column;position:absolute;top:80px;left:0;right:0;background:var(--dark);padding:22px 6%;gap:16px}
+    .menu-toggle{display:block}
+    .nav-right .btn{display:none}
+    section{padding:76px 0}
+    .topbar .hide-sm{display:none}
+  }
+  @media (max-width:600px){
+    .svc-grid,.steps,.price-grid,.why-list,.fields{grid-template-columns:1fr}
+    .field.full{grid-column:span 1}
+    .why-imgs{height:420px}
+    .brands ul{gap:18px;font-size:1rem}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div>🚨 <span data-i18n="k0">Reboque 24 horas:</span> <a href="tel:+351912345678">912 345 678</a></div>
+    <div class="hide-sm"><span data-i18n="k1">Segunda a Sexta 8h30–19h00 · Sábado 9h00–13h00</span></div>
+  </div>
+</div>
+
+<header>
+  <div class="container nav">
+    <a href="#inicio" class="logo"><span class="mark">🔧</span>Auto<b>Forte</b></a>
+    <ul id="menu">
+      <li><a href="#servicos" data-i18n="k2">Serviços</a></li>
+      <li><a href="#precos" data-i18n="k3">Preços</a></li>
+      <li><a href="#como-funciona" data-i18n="k4">Como funciona</a></li>
+      <li><a href="#opinioes" data-i18n="k5">Opiniões</a></li>
+      <li><a href="#orcamento" data-i18n="k6">Contactos</a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang" id="lang">
+        <button type="button" class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false">
+          <img class="flag" id="langFlag" src="https://flagcdn.com/w40/pt.png" alt="" width="22" height="16"><span id="langCode">PT</span><span class="caret">▾</span>
+        </button>
+        <ul class="lang-menu" id="langMenu">
+          <li><button type="button" data-lang="pt"><img class="flag" src="https://flagcdn.com/w40/pt.png" alt="" width="22" height="16">Português</button></li>
+          <li><button type="button" data-lang="en"><img class="flag" src="https://flagcdn.com/w40/gb.png" alt="" width="22" height="16">English</button></li>
+          <li><button type="button" data-lang="es"><img class="flag" src="https://flagcdn.com/w40/es.png" alt="" width="22" height="16">Español</button></li>
+          <li><button type="button" data-lang="fr"><img class="flag" src="https://flagcdn.com/w40/fr.png" alt="" width="22" height="16">Français</button></li>
+          <li><button type="button" data-lang="it"><img class="flag" src="https://flagcdn.com/w40/it.png" alt="" width="22" height="16">Italiano</button></li>
+          <li><button type="button" data-lang="de"><img class="flag" src="https://flagcdn.com/w40/de.png" alt="" width="22" height="16">Deutsch</button></li>
+          <li><button type="button" data-lang="uk"><img class="flag" src="https://flagcdn.com/w40/ua.png" alt="" width="22" height="16">Українська</button></li>
+          <li><button type="button" data-lang="ru"><img class="flag" src="https://flagcdn.com/w40/ru.png" alt="" width="22" height="16">Русский</button></li>
+          <li><button type="button" data-lang="ja"><img class="flag" src="https://flagcdn.com/w40/jp.png" alt="" width="22" height="16">日本語</button></li>
+          <li><button type="button" data-lang="zh"><img class="flag" src="https://flagcdn.com/w40/cn.png" alt="" width="22" height="16">中文</button></li>
+        </ul>
+      </div>
+
+      <a href="#orcamento" class="btn btn-orange" data-i18n="k7">Pedir orçamento</a>
+      <button class="menu-toggle" aria-label="Abrir menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg ph"><img src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=2400&q=80" alt="Mecânico a trabalhar numa viatura"></div>
+  <div class="container">
+    <span class="eyebrow" data-i18n="k8">Oficina mecânica multimarca</span>
+    <h1 data-i18n="k9">O seu carro em <span>boas mãos.</span></h1>
+    <p data-i18n="k10">Mecânicos experientes, equipamento de diagnóstico de última geração e preços transparentes. Sem surpresas na fatura.</p>
+    <ul class="checks">
+      <li data-i18n="k11">Orçamento gratuito e sem compromisso</li>
+      <li data-i18n="k12">Garantia de 12 meses em todas as reparações</li>
+      <li data-i18n="k13">Carro de substituição disponível</li>
+    </ul>
+    <div class="hero-actions">
+      <a href="#orcamento" class="btn btn-orange" data-i18n="k14">Pedir orçamento grátis</a>
+      <a href="tel:+351212345678" class="btn btn-outline">📞 21 234 5678</a>
+    </div>
+  </div>
+  <div class="hero-rating"><strong>4,9</strong><div class="stars">★★★★★</div><small data-i18n="k15">530 avaliações no Google</small></div>
+</section>
+
+<!-- MARCAS -->
+<div class="brands">
+  <div class="container">
+    <strong data-i18n="k16">Trabalhamos com todas as marcas</strong>
+    <ul><li>Renault</li><li>Peugeot</li><li>Volkswagen</li><li>BMW</li><li>Mercedes</li><li>Toyota</li><li>Fiat</li><li>Seat</li></ul>
+  </div>
+</div>
+
+<!-- SERVIÇOS -->
+<section id="servicos">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="k2">Serviços</span>
+      <h2 data-i18n="k17">Tudo o que o seu carro <span>precisa</span></h2>
+      <p data-i18n="k18">Da manutenção regular às reparações mais complexas, tratamos de ligeiros de passageiros e comerciais de todas as marcas.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal"><div class="ic">🛠️</div><h3 data-i18n="k19">Revisão e manutenção</h3><p data-i18n="k20">Revisões segundo o plano do fabricante, sem perder a garantia de marca.</p></div>
+      <div class="svc reveal"><div class="ic">🛢️</div><h3 data-i18n="k21">Mudança de óleo</h3><p data-i18n="k22">Óleo e filtros de qualidade, adequados às especificações do seu motor.</p></div>
+      <div class="svc reveal"><div class="ic">🛑</div><h3 data-i18n="k23">Travões</h3><p data-i18n="k24">Pastilhas, discos e líquido de travões verificados e substituídos com segurança.</p></div>
+      <div class="svc reveal"><div class="ic">🛞</div><h3 data-i18n="k25">Pneus e alinhamento</h3><p data-i18n="k26">Venda e montagem de pneus, equilibragem e alinhamento de direção.</p></div>
+      <div class="svc reveal"><div class="ic">💻</div><h3 data-i18n="k27">Diagnóstico eletrónico</h3><p data-i18n="k28">Leitura de avarias e luzes do painel com equipamento multimarca.</p></div>
+      <div class="svc reveal"><div class="ic">❄️</div><h3 data-i18n="k29">Ar condicionado</h3><p data-i18n="k30">Carga de gás, deteção de fugas e higienização do sistema.</p></div>
+      <div class="svc reveal"><div class="ic">⚙️</div><h3 data-i18n="k31">Embraiagem e caixa</h3><p data-i18n="k32">Substituição de embraiagem, volante bimassa e reparação de caixas.</p></div>
+      <div class="svc reveal"><div class="ic">✅</div><h3 data-i18n="k33">Preparação para inspeção</h3><p data-i18n="k34">Verificamos tudo antes da inspeção periódica para passar à primeira.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PREÇOS -->
+<section class="dark" id="precos">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="k3">Preços</span>
+      <h2 data-i18n="k35">Preços claros, <span>sem surpresas</span></h2>
+      <p data-i18n="k36">Valores de referência para os serviços mais pedidos. O preço final é sempre confirmado no orçamento, antes de começarmos.</p>
+    </div>
+    <div class="price-grid">
+      <div class="price-item reveal"><div><h3 data-i18n="k37">Mudança de óleo e filtro</h3><p data-i18n="k38">Inclui mão de obra e verificação de 20 pontos</p></div><div class="val"><small data-i18n="k39">desde</small><b>59 €</b></div></div>
+      <div class="price-item reveal"><div><h3 data-i18n="k40">Revisão completa</h3><p data-i18n="k41">Óleo, filtros, níveis e check-up geral</p></div><div class="val"><small data-i18n="k39">desde</small><b>129 €</b></div></div>
+      <div class="price-item reveal"><div><h3 data-i18n="k42">Pastilhas de travão</h3><p data-i18n="k43">Eixo dianteiro, peças e mão de obra</p></div><div class="val"><small data-i18n="k39">desde</small><b>79 €</b></div></div>
+      <div class="price-item reveal"><div><h3 data-i18n="k27">Diagnóstico eletrónico</h3><p data-i18n="k44">Descontado se fizer a reparação connosco</p></div><div class="val"><small data-i18n="k39">desde</small><b>35 €</b></div></div>
+      <div class="price-item reveal"><div><h3 data-i18n="k45">Carga de ar condicionado</h3><p data-i18n="k46">Inclui teste de fugas</p></div><div class="val"><small data-i18n="k39">desde</small><b>59 €</b></div></div>
+      <div class="price-item reveal"><div><h3 data-i18n="k47">Alinhamento de direção</h3><p data-i18n="k48">Com relatório antes e depois</p></div><div class="val"><small data-i18n="k39">desde</small><b>35 €</b></div></div>
+    </div>
+    <p class="price-note" data-i18n="k49">Preços com IVA incluído, indicativos para ligeiros de passageiros. Podem variar conforme o modelo do veículo.</p>
+  </div>
+</section>
+
+<!-- COMO FUNCIONA -->
+<section id="como-funciona">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-i18n="k4">Como funciona</span>
+      <h2 data-i18n="k50">Simples, rápido e <span>transparente</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="n">01</div><h3 data-i18n="k51">Marque</h3><p data-i18n="k52">Peça o orçamento online, por WhatsApp ou por telefone, e escolha o dia que lhe dá mais jeito.</p></div>
+      <div class="step reveal"><div class="n">02</div><h3 data-i18n="k53">Diagnóstico</h3><p data-i18n="k54">Analisamos o veículo e explicamos-lhe o que é necessário, com fotos se for preciso.</p></div>
+      <div class="step reveal"><div class="n">03</div><h3 data-i18n="k55">Aprovação</h3><p data-i18n="k56">Só avançamos com a reparação depois de aprovar o orçamento. Sem custos escondidos.</p></div>
+      <div class="step reveal"><div class="n">04</div><h3 data-i18n="k57">Entrega</h3><p data-i18n="k58">Avisamos quando o carro estiver pronto, limpo e testado. Também podemos levá-lo a casa.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORQUÊ -->
+<section class="why">
+  <div class="container why-grid">
+    <div class="why-imgs reveal">
+      <div class="ph a"><img src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=75" alt="Mecânico na oficina"></div>
+      <div class="ph b"><img src="https://images.unsplash.com/photo-1487754180451-c456f719a1fc?auto=format&fit=crop&w=800&q=75" alt="Motor de automóvel"></div>
+      <div class="years"><strong>25</strong><span data-i18n="k59">anos de experiência</span></div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow" data-i18n="k60">Porquê a AutoForte</span>
+      <h2 data-i18n="k61">Confiança que se <span>conquista</span> em cada reparação.</h2>
+      <p data-i18n="k62">Somos uma oficina de família, com mais de 25 anos de experiência. Explicamos tudo de forma simples e tratamos o seu carro como se fosse nosso.</p>
+      <div class="why-list">
+        <div class="why-item"><div class="ic">👨‍🔧</div><div><strong data-i18n="k63">Mecânicos certificados</strong><small data-i18n="k64">Formação contínua em todas as marcas</small></div></div>
+        <div class="why-item"><div class="ic">🔩</div><div><strong data-i18n="k65">Peças de qualidade</strong><small data-i18n="k66">Originais ou de qualidade equivalente</small></div></div>
+        <div class="why-item"><div class="ic">🛡️</div><div><strong data-i18n="k67">Garantia de 12 meses</strong><small data-i18n="k68">Em peças e mão de obra</small></div></div>
+        <div class="why-item"><div class="ic">🚗</div><div><strong data-i18n="k69">Recolha e entrega</strong><small data-i18n="k70">Vamos buscar e levar o seu carro</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPINIÕES -->
+<section id="opinioes">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-i18n="k5">Opiniões</span>
+      <h2 data-i18n="k71">O que dizem os <span>nossos clientes</span></h2>
+    </div>
+    <div class="r-grid">
+      <div class="review reveal"><div class="stars">★★★★★</div><p data-i18n="k72">“Honestos e rápidos. Noutra oficina queriam trocar a embraiagem; aqui descobriram que era só um sensor. Poupei centenas de euros.”</p><strong>Nuno F.</strong><small>Volkswagen Golf</small></div>
+      <div class="review reveal"><div class="stars">★★★★★</div><p data-i18n="k73">“Fizeram a revisão e foram buscar e levar o carro a casa. Recebi fotos de tudo o que trocaram. Serviço impecável.”</p><strong>Helena R.</strong><small>Peugeot 2008</small></div>
+      <div class="review reveal"><div class="stars">★★★★★</div><p data-i18n="k74">“O carro ficou parado na autoestrada e o reboque chegou em 40 minutos. No dia seguinte já estava reparado.”</p><strong>Carlos M.</strong><small>Renault Clio</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ORÇAMENTO + CONTACTOS -->
+<section class="dark" id="orcamento">
+  <div class="container quote-grid">
+    <div class="quote-info reveal">
+      <span class="eyebrow" data-i18n="k75">Orçamento</span>
+      <h2 data-i18n="k76">Peça o seu orçamento <span>grátis</span></h2>
+      <p data-i18n="k77">Diga-nos qual é o carro e o que precisa. Respondemos por WhatsApp com uma estimativa e uma data disponível.</p>
+      <div class="tow"><div class="ic">🚨</div><div><strong data-i18n="k78">Avaria na estrada?</strong><a href="tel:+351912345678">912 345 678</a></div></div>
+      <div class="c-list">
+        <div><div class="ic">📍</div><div><strong data-i18n="k79">Morada</strong><span>Rua da Indústria, 15<br>2700-000 Amadora</span></div></div>
+        <div><div class="ic">📞</div><div><strong data-i18n="k80">Telefone</strong><span>21 234 5678</span></div></div>
+        <div><div class="ic">🕘</div><div style="flex:1"><strong data-i18n="k81">Horário</strong>
+          <table class="hours" id="hours">
+            <tr data-d="1"><td data-i18n="k82">Segunda a Sexta</td><td>8h30 – 19h00</td></tr>
+            <tr data-d="6"><td data-i18n="k83">Sábado</td><td>9h00 – 13h00</td></tr>
+            <tr data-d="0"><td data-i18n="k84">Domingo</td><td data-i18n="k85">Encerrado</td></tr>
+          </table></div></div>
+      </div>
+    </div>
+    <form class="form reveal" id="quoteForm">
+      <h3 data-i18n="k86">Pedido de orçamento</h3>
+      <div class="fields">
+        <div class="field"><label for="f-name" data-i18n="k87">Nome</label><input id="f-name" required autocomplete="name"></div>
+        <div class="field"><label for="f-car" data-i18n="k88">Marca e modelo</label><input id="f-car" required></div>
+        <div class="field"><label for="f-year" data-i18n="k89">Ano</label><input id="f-year" type="number" min="1980" max="2030"></div>
+        <div class="field"><label for="f-plate" data-i18n="k90">Matrícula (opcional)</label><input id="f-plate"></div>
+        <div class="field"><label for="f-service" data-i18n="k91">Serviço</label>
+          <select id="f-service">
+            <option value="Revisão e manutenção" data-i18n="k19">Revisão e manutenção</option>
+            <option value="Mudança de óleo" data-i18n="k21">Mudança de óleo</option>
+            <option value="Travões" data-i18n="k23">Travões</option>
+            <option value="Pneus e alinhamento" data-i18n="k25">Pneus e alinhamento</option>
+            <option value="Diagnóstico eletrónico" data-i18n="k27">Diagnóstico eletrónico</option>
+            <option value="Ar condicionado" data-i18n="k29">Ar condicionado</option>
+            <option value="Embraiagem e caixa" data-i18n="k31">Embraiagem e caixa</option>
+            <option value="Preparação para inspeção" data-i18n="k33">Preparação para inspeção</option>
+            <option value="Outro" data-i18n="k92">Outro</option>
+          </select></div>
+        <div class="field"><label for="f-date" data-i18n="k93">Data preferida</label><input id="f-date" type="date"></div>
+        <div class="field full"><label for="f-notes" data-i18n="k94">Descreva o problema (opcional)</label><textarea id="f-notes"></textarea></div>
+      </div>
+      <button type="submit" class="btn btn-wa" data-i18n="k95">💬 Enviar pedido por WhatsApp</button>
+      <p class="form-note" data-i18n="k96">Os seus dados são usados apenas para responder ao seu pedido.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow" data-i18n="k97">Perguntas frequentes</span>
+      <h2 data-i18n="k98">Dúvidas? <span>Respondemos</span></h2>
+    </div>
+    <div class="faq reveal">
+      <details open><summary data-i18n="k99">Fazer a revisão aqui faz perder a garantia da marca?</summary><p data-i18n="k100">Não. Seguimos o plano de manutenção do fabricante e usamos peças com a qualidade exigida, por isso a garantia do seu carro mantém-se.</p></details>
+      <details><summary data-i18n="k101">Quanto tempo demora uma revisão?</summary><p data-i18n="k102">Uma revisão normal fica pronta no próprio dia. Reparações maiores dependem das peças; damos-lhe sempre um prazo no orçamento.</p></details>
+      <details><summary data-i18n="k103">Têm carro de substituição?</summary><p data-i18n="k104">Sim, mediante disponibilidade e reserva prévia, para reparações que demorem mais de um dia.</p></details>
+      <details><summary data-i18n="k105">Que formas de pagamento aceitam?</summary><p data-i18n="k106">Aceitamos numerário, multibanco, cartão de crédito e MB WAY. Para reparações maiores é possível pagar em prestações.</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="map"><iframe src="https://www.google.com/maps?q=Amadora&output=embed" loading="lazy" title="Mapa da oficina"></iframe></div>
+
+<footer>
+  <div class="container">
+    <div class="foot">
+      <div><a href="#inicio" class="logo"><span class="mark">🔧</span>Auto<b>Forte</b></a><p data-i18n="k107">Oficina mecânica multimarca com mais de 25 anos de experiência. Revisões, reparações e diagnóstico com garantia e preços transparentes.</p></div>
+      <div><h4 data-i18n="k108">Navegação</h4><ul><li><a href="#servicos" data-i18n="k2">Serviços</a></li><li><a href="#precos" data-i18n="k3">Preços</a></li><li><a href="#como-funciona" data-i18n="k4">Como funciona</a></li><li><a href="#orcamento" data-i18n="k6">Contactos</a></li></ul></div>
+      <div><h4 data-i18n="k109">Siga-nos</h4><ul><li><a href="#">Facebook</a></li><li><a href="#">Instagram</a></li><li><a href="#">Google</a></li></ul></div>
+    </div>
+    <div class="copy">© <span id="y"></span> AutoForte Oficina · <span data-i18n="k110">Todos os direitos reservados</span></div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/351912345678" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+<script>
+  document.querySelectorAll('#menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('menu').classList.remove('open')));
+
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  document.querySelectorAll('.ph img').forEach(img=>{
+    const hide=()=>img.style.visibility='hidden';
+    if(img.complete&&img.naturalWidth===0)hide();else img.addEventListener('error',hide);
+  });
+
+  // Orçamento: abre o WhatsApp com a mensagem já escrita (sempre em português, para a oficina)
+  document.getElementById('f-date').min=new Date().toISOString().slice(0,10);
+  document.getElementById('quoteForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const v=id=>document.getElementById(id).value.trim();
+    let msg=`Olá! Gostaria de pedir um orçamento.\nNome: ${v('f-name')}\nViatura: ${v('f-car')}`;
+    if(v('f-year'))msg+=` (${v('f-year')})`;
+    if(v('f-plate'))msg+=`\nMatrícula: ${v('f-plate')}`;
+    msg+=`\nServiço: ${v('f-service')}`;
+    if(v('f-date')){const [y,m,d]=v('f-date').split('-');msg+=`\nData preferida: ${d}/${m}/${y}`;}
+    if(v('f-notes'))msg+=`\nProblema: ${v('f-notes')}`;
+    window.open('https://wa.me/351912345678?text='+encodeURIComponent(msg),'_blank');
+  });
+
+  const day=new Date().getDay();
+  const row=document.querySelector(`#hours tr[data-d="${day>=1&&day<=5?1:day}"]`);
+  if(row)row.classList.add('today');
+  document.getElementById('y').textContent=new Date().getFullYear();
+
+  // ---------- IDIOMAS ----------
+  const I18N = {"en": {"k0": "24-hour towing:", "k1": "Monday to Friday 8:30–19:00 · Saturday 9:00–13:00", "k2": "Services", "k3": "Prices", "k4": "How it works", "k5": "Reviews", "k6": "Contact", "k7": "Get a quote", "k8": "Multi-brand car repair garage", "k9": "Your car in <span>safe hands.</span>", "k10": "Experienced mechanics, state-of-the-art diagnostic equipment and transparent prices. No surprises on the bill.", "k11": "Free, no-obligation quote", "k12": "12-month warranty on all repairs", "k13": "Courtesy car available", "k14": "Get a free quote", "k15": "530 reviews on Google", "k16": "We work on all makes", "k17": "Everything your car <span>needs</span>", "k18": "From routine maintenance to the most complex repairs, we look after cars and vans of every make.", "k19": "Servicing and maintenance", "k20": "Servicing to the manufacturer's schedule, without affecting your warranty.", "k21": "Oil change", "k22": "Quality oil and filters, matched to your engine's specifications.", "k23": "Brakes", "k24": "Pads, discs and brake fluid checked and replaced safely.", "k25": "Tyres and alignment", "k26": "Tyre sales and fitting, wheel balancing and wheel alignment.", "k27": "Electronic diagnostics", "k28": "Fault code and warning light reading with multi-brand equipment.", "k29": "Air conditioning", "k30": "Gas recharge, leak detection and system cleaning.", "k31": "Clutch and gearbox", "k32": "Clutch and dual-mass flywheel replacement, and gearbox repairs.", "k33": "MOT preparation", "k34": "We check everything before your periodic inspection so you pass first time.", "k35": "Clear prices, <span>no surprises</span>", "k36": "Reference prices for our most requested services. The final price is always confirmed in the quote before we start.", "k37": "Oil and filter change", "k38": "Includes labour and a 20-point check", "k39": "from", "k40": "Full service", "k41": "Oil, filters, fluid levels and general check-up", "k42": "Brake pads", "k43": "Front axle, parts and labour", "k44": "Deducted if you have the repair done with us", "k45": "Air conditioning recharge", "k46": "Includes leak test", "k47": "Wheel alignment", "k48": "With before and after report", "k49": "Prices include VAT and are a guide for passenger cars. They may vary depending on the vehicle model.", "k50": "Simple, fast and <span>transparent</span>", "k51": "Book", "k52": "Request a quote online, on WhatsApp or by phone, and choose the day that suits you best.", "k53": "Diagnosis", "k54": "We inspect the vehicle and explain what's needed, with photos if necessary.", "k55": "Approval", "k56": "We only go ahead with the repair once you approve the quote. No hidden costs.", "k57": "Collection", "k58": "We let you know when the car is ready, clean and tested. We can also drop it off at your home.", "k59": "years of experience", "k60": "Why AutoForte", "k61": "Trust that's <span>earned</span> with every repair.", "k62": "We're a family garage with more than 25 years of experience. We explain everything simply and treat your car as if it were our own.", "k63": "Certified mechanics", "k64": "Ongoing training on all makes", "k65": "Quality parts", "k66": "Original or equivalent quality", "k67": "12-month warranty", "k68": "On parts and labour", "k69": "Collection and delivery", "k70": "We pick up and drop off your car", "k71": "What our <span>customers say</span>", "k72": "“Honest and fast. Another garage wanted to replace the clutch; here they found it was just a sensor. I saved hundreds of euros.”", "k73": "“They serviced the car and picked it up and dropped it off at home. I got photos of everything they replaced. Impeccable service.”", "k74": "“My car broke down on the motorway and the tow truck arrived in 40 minutes. It was fixed the next day.”", "k75": "Quote", "k76": "Get your <span>free</span> quote", "k77": "Tell us about your car and what it needs. We'll reply on WhatsApp with an estimate and an available date.", "k78": "Broken down on the road?", "k79": "Address", "k80": "Phone", "k81": "Opening hours", "k82": "Monday to Friday", "k83": "Saturday", "k84": "Sunday", "k85": "Closed", "k86": "Quote request", "k87": "Name", "k88": "Make and model", "k89": "Year", "k90": "Licence plate (optional)", "k91": "Service", "k92": "Other", "k93": "Preferred date", "k94": "Describe the problem (optional)", "k95": "💬 Send request via WhatsApp", "k96": "Your details are only used to reply to your request.", "k97": "Frequently asked questions", "k98": "Questions? <span>We've got answers</span>", "k99": "Will servicing my car here void the manufacturer's warranty?", "k100": "No. We follow the manufacturer's maintenance schedule and use parts of the required quality, so your car's warranty remains valid.", "k101": "How long does a service take?", "k102": "A standard service is ready the same day. Bigger repairs depend on parts; we always give you a timeframe in the quote.", "k103": "Do you have courtesy cars?", "k104": "Yes, subject to availability and advance booking, for repairs that take more than one day.", "k105": "What payment methods do you accept?", "k106": "We accept cash, debit card, credit card and MB WAY. Larger repairs can be paid in instalments.", "k107": "Multi-brand car repair garage with more than 25 years of experience. Servicing, repairs and diagnostics with a warranty and transparent prices.", "k108": "Navigation", "k109": "Follow us", "k110": "All rights reserved"}, "es": {"k0": "Grúa 24 horas:", "k1": "Lunes a viernes 8:30–19:00 · Sábado 9:00–13:00", "k2": "Servicios", "k3": "Precios", "k4": "Cómo funciona", "k5": "Opiniones", "k6": "Contacto", "k7": "Pedir presupuesto", "k8": "Taller mecánico multimarca", "k9": "Su coche en <span>buenas manos.</span>", "k10": "Mecánicos con experiencia, equipos de diagnóstico de última generación y precios transparentes. Sin sorpresas en la factura.", "k11": "Presupuesto gratuito y sin compromiso", "k12": "Garantía de 12 meses en todas las reparaciones", "k13": "Coche de sustitución disponible", "k14": "Pedir presupuesto gratis", "k15": "530 reseñas en Google", "k16": "Trabajamos con todas las marcas", "k17": "Todo lo que su coche <span>necesita</span>", "k18": "Del mantenimiento habitual a las reparaciones más complejas, atendemos turismos y comerciales de todas las marcas.", "k19": "Revisión y mantenimiento", "k20": "Revisiones según el plan del fabricante, sin perder la garantía de la marca.", "k21": "Cambio de aceite", "k22": "Aceite y filtros de calidad, adecuados a las especificaciones de su motor.", "k23": "Frenos", "k24": "Pastillas, discos y líquido de frenos revisados y sustituidos con seguridad.", "k25": "Neumáticos y alineación", "k26": "Venta y montaje de neumáticos, equilibrado y alineación de dirección.", "k27": "Diagnóstico electrónico", "k28": "Lectura de averías y testigos del salpicadero con equipo multimarca.", "k29": "Aire acondicionado", "k30": "Carga de gas, detección de fugas e higienización del sistema.", "k31": "Embrague y caja de cambios", "k32": "Sustitución de embrague y volante bimasa, y reparación de cajas de cambios.", "k33": "Preparación para la ITV", "k34": "Revisamos todo antes de la inspección periódica para que pase a la primera.", "k35": "Precios claros, <span>sin sorpresas</span>", "k36": "Precios de referencia de los servicios más solicitados. El precio final siempre se confirma en el presupuesto, antes de empezar.", "k37": "Cambio de aceite y filtro", "k38": "Incluye mano de obra y revisión de 20 puntos", "k39": "desde", "k40": "Revisión completa", "k41": "Aceite, filtros, niveles y chequeo general", "k42": "Pastillas de freno", "k43": "Eje delantero, piezas y mano de obra", "k44": "Se descuenta si hace la reparación con nosotros", "k45": "Carga de aire acondicionado", "k46": "Incluye prueba de fugas", "k47": "Alineación de dirección", "k48": "Con informe antes y después", "k49": "Precios con IVA incluido, orientativos para turismos. Pueden variar según el modelo del vehículo.", "k50": "Sencillo, rápido y <span>transparente</span>", "k51": "Reserve", "k52": "Pida presupuesto online, por WhatsApp o por teléfono, y elija el día que mejor le venga.", "k53": "Diagnóstico", "k54": "Analizamos el vehículo y le explicamos lo que necesita, con fotos si hace falta.", "k55": "Aprobación", "k56": "Solo hacemos la reparación cuando usted aprueba el presupuesto. Sin costes ocultos.", "k57": "Entrega", "k58": "Le avisamos cuando el coche esté listo, limpio y probado. También podemos llevárselo a casa.", "k59": "años de experiencia", "k60": "Por qué AutoForte", "k61": "Confianza que se <span>gana</span> en cada reparación.", "k62": "Somos un taller familiar con más de 25 años de experiencia. Lo explicamos todo de forma sencilla y tratamos su coche como si fuera nuestro.", "k63": "Mecánicos certificados", "k64": "Formación continua en todas las marcas", "k65": "Piezas de calidad", "k66": "Originales o de calidad equivalente", "k67": "Garantía de 12 meses", "k68": "En piezas y mano de obra", "k69": "Recogida y entrega", "k70": "Recogemos y llevamos su coche", "k71": "Lo que dicen <span>nuestros clientes</span>", "k72": "“Honestos y rápidos. En otro taller querían cambiar el embrague; aquí descubrieron que era solo un sensor. Me ahorré cientos de euros.”", "k73": "“Hicieron la revisión y recogieron y llevaron el coche a casa. Recibí fotos de todo lo que cambiaron. Servicio impecable.”", "k74": "“El coche se quedó parado en la autopista y la grúa llegó en 40 minutos. Al día siguiente ya estaba reparado.”", "k75": "Presupuesto", "k76": "Pida su presupuesto <span>gratis</span>", "k77": "Díganos qué coche tiene y qué necesita. Le respondemos por WhatsApp con una estimación y una fecha disponible.", "k78": "¿Avería en la carretera?", "k79": "Dirección", "k80": "Teléfono", "k81": "Horario", "k82": "Lunes a viernes", "k83": "Sábado", "k84": "Domingo", "k85": "Cerrado", "k86": "Solicitud de presupuesto", "k87": "Nombre", "k88": "Marca y modelo", "k89": "Año", "k90": "Matrícula (opcional)", "k91": "Servicio", "k92": "Otro", "k93": "Fecha preferida", "k94": "Describa el problema (opcional)", "k95": "💬 Enviar solicitud por WhatsApp", "k96": "Sus datos solo se utilizan para responder a su solicitud.", "k97": "Preguntas frecuentes", "k98": "¿Dudas? <span>Le respondemos</span>", "k99": "¿Hacer la revisión aquí hace perder la garantía de la marca?", "k100": "No. Seguimos el plan de mantenimiento del fabricante y usamos piezas con la calidad exigida, así que la garantía de su coche se mantiene.", "k101": "¿Cuánto tarda una revisión?", "k102": "Una revisión normal está lista el mismo día. Las reparaciones mayores dependen de las piezas; siempre le damos un plazo en el presupuesto.", "k103": "¿Tienen coche de sustitución?", "k104": "Sí, según disponibilidad y con reserva previa, para reparaciones que duren más de un día.", "k105": "¿Qué formas de pago aceptan?", "k106": "Aceptamos efectivo, tarjeta de débito y crédito y MB WAY. Las reparaciones grandes se pueden pagar a plazos.", "k107": "Taller mecánico multimarca con más de 25 años de experiencia. Revisiones, reparaciones y diagnóstico con garantía y precios transparentes.", "k108": "Navegación", "k109": "Síganos", "k110": "Todos los derechos reservados"}, "fr": {"k0": "Dépannage 24 h/24 :", "k1": "Du lundi au vendredi 8h30–19h00 · Samedi 9h00–13h00", "k2": "Services", "k3": "Tarifs", "k4": "Comment ça marche", "k5": "Avis", "k6": "Contact", "k7": "Demander un devis", "k8": "Garage multimarque", "k9": "Votre voiture <span>entre de bonnes mains.</span>", "k10": "Des mécaniciens expérimentés, des outils de diagnostic de dernière génération et des prix transparents. Pas de surprise sur la facture.", "k11": "Devis gratuit et sans engagement", "k12": "Garantie de 12 mois sur toutes les réparations", "k13": "Véhicule de courtoisie disponible", "k14": "Demander un devis gratuit", "k15": "530 avis sur Google", "k16": "Nous intervenons sur toutes les marques", "k17": "Tout ce dont votre voiture <span>a besoin</span>", "k18": "De l'entretien courant aux réparations les plus complexes, nous prenons en charge voitures et utilitaires de toutes marques.", "k19": "Révision et entretien", "k20": "Révisions selon le carnet du constructeur, sans perdre la garantie.", "k21": "Vidange", "k22": "Huile et filtres de qualité, adaptés aux spécifications de votre moteur.", "k23": "Freins", "k24": "Plaquettes, disques et liquide de frein contrôlés et remplacés en toute sécurité.", "k25": "Pneus et parallélisme", "k26": "Vente et montage de pneus, équilibrage et réglage du parallélisme.", "k27": "Diagnostic électronique", "k28": "Lecture des codes défaut et des voyants avec un équipement multimarque.", "k29": "Climatisation", "k30": "Recharge de gaz, détection de fuites et désinfection du circuit.", "k31": "Embrayage et boîte de vitesses", "k32": "Remplacement de l'embrayage et du volant bimasse, réparation de boîtes.", "k33": "Préparation au contrôle technique", "k34": "Nous vérifions tout avant le contrôle technique pour le réussir du premier coup.", "k35": "Des prix clairs, <span>sans surprise</span>", "k36": "Prix indicatifs des prestations les plus demandées. Le prix final est toujours confirmé dans le devis, avant le début des travaux.", "k37": "Vidange et filtre", "k38": "Main-d'œuvre et contrôle en 20 points inclus", "k39": "dès", "k40": "Révision complète", "k41": "Huile, filtres, niveaux et contrôle général", "k42": "Plaquettes de frein", "k43": "Essieu avant, pièces et main-d'œuvre", "k44": "Déduit si vous faites la réparation chez nous", "k45": "Recharge de climatisation", "k46": "Test de fuites inclus", "k47": "Réglage du parallélisme", "k48": "Avec rapport avant et après", "k49": "Prix TTC, indicatifs pour les véhicules particuliers. Ils peuvent varier selon le modèle.", "k50": "Simple, rapide et <span>transparent</span>", "k51": "Réservez", "k52": "Demandez un devis en ligne, sur WhatsApp ou par téléphone, et choisissez le jour qui vous convient.", "k53": "Diagnostic", "k54": "Nous examinons le véhicule et vous expliquons ce qu'il faut faire, photos à l'appui si nécessaire.", "k55": "Validation", "k56": "Nous ne commençons la réparation qu'après votre accord sur le devis. Aucun coût caché.", "k57": "Restitution", "k58": "Nous vous prévenons quand la voiture est prête, propre et testée. Nous pouvons aussi la livrer chez vous.", "k59": "ans d'expérience", "k60": "Pourquoi AutoForte", "k61": "Une confiance qui se <span>gagne</span> à chaque réparation.", "k62": "Nous sommes un garage familial avec plus de 25 ans d'expérience. Nous expliquons tout simplement et traitons votre voiture comme la nôtre.", "k63": "Mécaniciens certifiés", "k64": "Formation continue sur toutes les marques", "k65": "Pièces de qualité", "k66": "D'origine ou de qualité équivalente", "k67": "Garantie de 12 mois", "k68": "Pièces et main-d'œuvre", "k69": "Enlèvement et livraison", "k70": "Nous venons chercher et ramenons votre voiture", "k71": "Ce que disent <span>nos clients</span>", "k72": "« Honnêtes et rapides. Un autre garage voulait changer l'embrayage ; ici, ils ont trouvé que ce n'était qu'un capteur. J'ai économisé des centaines d'euros. »", "k73": "« Ils ont fait la révision et sont venus chercher puis ramener la voiture chez moi. J'ai reçu des photos de tout ce qui a été changé. Service impeccable. »", "k74": "« Ma voiture est tombée en panne sur l'autoroute et la dépanneuse est arrivée en 40 minutes. Le lendemain, elle était réparée. »", "k75": "Devis", "k76": "Demandez votre devis <span>gratuit</span>", "k77": "Dites-nous quelle est votre voiture et ce dont elle a besoin. Nous répondons sur WhatsApp avec une estimation et une date disponible.", "k78": "En panne sur la route ?", "k79": "Adresse", "k80": "Téléphone", "k81": "Horaires", "k82": "Du lundi au vendredi", "k83": "Samedi", "k84": "Dimanche", "k85": "Fermé", "k86": "Demande de devis", "k87": "Nom", "k88": "Marque et modèle", "k89": "Année", "k90": "Immatriculation (facultatif)", "k91": "Prestation", "k92": "Autre", "k93": "Date souhaitée", "k94": "Décrivez le problème (facultatif)", "k95": "💬 Envoyer la demande sur WhatsApp", "k96": "Vos données sont utilisées uniquement pour répondre à votre demande.", "k97": "Questions fréquentes", "k98": "Des questions ? <span>On vous répond</span>", "k99": "Faire la révision chez vous fait-il perdre la garantie constructeur ?", "k100": "Non. Nous suivons le plan d'entretien du constructeur et utilisons des pièces de la qualité requise : la garantie de votre voiture est conservée.", "k101": "Combien de temps dure une révision ?", "k102": "Une révision classique est prête dans la journée. Les réparations plus importantes dépendent des pièces ; nous vous donnons toujours un délai dans le devis.", "k103": "Avez-vous des véhicules de courtoisie ?", "k104": "Oui, selon disponibilité et sur réservation, pour les réparations de plus d'une journée.", "k105": "Quels moyens de paiement acceptez-vous ?", "k106": "Espèces, carte de débit, carte de crédit et MB WAY. Les réparations importantes peuvent être payées en plusieurs fois.", "k107": "Garage multimarque avec plus de 25 ans d'expérience. Révisions, réparations et diagnostic avec garantie et prix transparents.", "k108": "Navigation", "k109": "Suivez-nous", "k110": "Tous droits réservés"}, "it": {"k0": "Soccorso stradale 24 ore:", "k1": "Dal lunedì al venerdì 8:30–19:00 · Sabato 9:00–13:00", "k2": "Servizi", "k3": "Prezzi", "k4": "Come funziona", "k5": "Recensioni", "k6": "Contatti", "k7": "Richiedi un preventivo", "k8": "Officina meccanica multimarca", "k9": "La tua auto in <span>buone mani.</span>", "k10": "Meccanici esperti, strumenti diagnostici di ultima generazione e prezzi trasparenti. Nessuna sorpresa in fattura.", "k11": "Preventivo gratuito e senza impegno", "k12": "Garanzia di 12 mesi su tutte le riparazioni", "k13": "Auto sostitutiva disponibile", "k14": "Richiedi un preventivo gratuito", "k15": "530 recensioni su Google", "k16": "Lavoriamo su tutte le marche", "k17": "Tutto ciò di cui la tua auto <span>ha bisogno</span>", "k18": "Dalla manutenzione ordinaria alle riparazioni più complesse, ci occupiamo di auto e veicoli commerciali di tutte le marche.", "k19": "Tagliando e manutenzione", "k20": "Tagliandi secondo il piano del costruttore, senza perdere la garanzia.", "k21": "Cambio olio", "k22": "Olio e filtri di qualità, adatti alle specifiche del tuo motore.", "k23": "Freni", "k24": "Pastiglie, dischi e liquido dei freni controllati e sostituiti in sicurezza.", "k25": "Pneumatici e convergenza", "k26": "Vendita e montaggio pneumatici, equilibratura e convergenza.", "k27": "Diagnosi elettronica", "k28": "Lettura dei guasti e delle spie del cruscotto con strumentazione multimarca.", "k29": "Aria condizionata", "k30": "Ricarica gas, ricerca perdite e igienizzazione dell'impianto.", "k31": "Frizione e cambio", "k32": "Sostituzione di frizione e volano bimassa, riparazione del cambio.", "k33": "Preparazione alla revisione", "k34": "Controlliamo tutto prima della revisione periodica per superarla al primo colpo.", "k35": "Prezzi chiari, <span>senza sorprese</span>", "k36": "Prezzi di riferimento per i servizi più richiesti. Il prezzo finale è sempre confermato nel preventivo, prima di iniziare.", "k37": "Cambio olio e filtro", "k38": "Include manodopera e controllo in 20 punti", "k39": "da", "k40": "Tagliando completo", "k41": "Olio, filtri, livelli e controllo generale", "k42": "Pastiglie dei freni", "k43": "Asse anteriore, ricambi e manodopera", "k44": "Scalato se fai la riparazione con noi", "k45": "Ricarica aria condizionata", "k46": "Include test delle perdite", "k47": "Convergenza", "k48": "Con report prima e dopo", "k49": "Prezzi IVA inclusa, indicativi per autovetture. Possono variare in base al modello del veicolo.", "k50": "Semplice, veloce e <span>trasparente</span>", "k51": "Prenota", "k52": "Richiedi il preventivo online, su WhatsApp o per telefono, e scegli il giorno che preferisci.", "k53": "Diagnosi", "k54": "Esaminiamo il veicolo e ti spieghiamo cosa serve, con foto se necessario.", "k55": "Approvazione", "k56": "Procediamo con la riparazione solo dopo l'approvazione del preventivo. Nessun costo nascosto.", "k57": "Riconsegna", "k58": "Ti avvisiamo quando l'auto è pronta, pulita e collaudata. Possiamo anche riportartela a casa.", "k59": "anni di esperienza", "k60": "Perché AutoForte", "k61": "Una fiducia che si <span>conquista</span> a ogni riparazione.", "k62": "Siamo un'officina di famiglia con oltre 25 anni di esperienza. Spieghiamo tutto in modo semplice e trattiamo la tua auto come se fosse nostra.", "k63": "Meccanici certificati", "k64": "Formazione continua su tutte le marche", "k65": "Ricambi di qualità", "k66": "Originali o di qualità equivalente", "k67": "Garanzia di 12 mesi", "k68": "Su ricambi e manodopera", "k69": "Ritiro e consegna", "k70": "Veniamo a prendere e riportiamo la tua auto", "k71": "Cosa dicono <span>i nostri clienti</span>", "k72": "“Onesti e veloci. In un'altra officina volevano cambiare la frizione; qui hanno scoperto che era solo un sensore. Ho risparmiato centinaia di euro.”", "k73": "“Hanno fatto il tagliando e sono venuti a prendere e riportare l'auto a casa. Ho ricevuto le foto di tutto ciò che hanno sostituito. Servizio impeccabile.”", "k74": "“L'auto si è fermata in autostrada e il carro attrezzi è arrivato in 40 minuti. Il giorno dopo era già riparata.”", "k75": "Preventivo", "k76": "Richiedi il tuo preventivo <span>gratuito</span>", "k77": "Dicci qual è la tua auto e di cosa ha bisogno. Ti rispondiamo su WhatsApp con una stima e una data disponibile.", "k78": "Guasto in strada?", "k79": "Indirizzo", "k80": "Telefono", "k81": "Orari", "k82": "Dal lunedì al venerdì", "k83": "Sabato", "k84": "Domenica", "k85": "Chiuso", "k86": "Richiesta di preventivo", "k87": "Nome", "k88": "Marca e modello", "k89": "Anno", "k90": "Targa (facoltativo)", "k91": "Servizio", "k92": "Altro", "k93": "Data preferita", "k94": "Descrivi il problema (facoltativo)", "k95": "💬 Invia la richiesta su WhatsApp", "k96": "I tuoi dati sono usati solo per rispondere alla tua richiesta.", "k97": "Domande frequenti", "k98": "Dubbi? <span>Ti rispondiamo</span>", "k99": "Fare il tagliando qui fa perdere la garanzia della casa?", "k100": "No. Seguiamo il piano di manutenzione del costruttore e usiamo ricambi della qualità richiesta, quindi la garanzia della tua auto resta valida.", "k101": "Quanto dura un tagliando?", "k102": "Un tagliando normale è pronto in giornata. Le riparazioni più grandi dipendono dai ricambi; ti indichiamo sempre i tempi nel preventivo.", "k103": "Avete un'auto sostitutiva?", "k104": "Sì, in base alla disponibilità e su prenotazione, per riparazioni che durano più di un giorno.", "k105": "Quali metodi di pagamento accettate?", "k106": "Accettiamo contanti, bancomat, carta di credito e MB WAY. Le riparazioni più grandi si possono pagare a rate.", "k107": "Officina meccanica multimarca con oltre 25 anni di esperienza. Tagliandi, riparazioni e diagnosi con garanzia e prezzi trasparenti.", "k108": "Navigazione", "k109": "Seguici", "k110": "Tutti i diritti riservati"}, "de": {"k0": "24-Stunden-Abschleppdienst:", "k1": "Montag bis Freitag 8:30–19:00 · Samstag 9:00–13:00", "k2": "Leistungen", "k3": "Preise", "k4": "So funktioniert's", "k5": "Bewertungen", "k6": "Kontakt", "k7": "Angebot anfordern", "k8": "Freie Kfz-Werkstatt für alle Marken", "k9": "Ihr Auto in <span>guten Händen.</span>", "k10": "Erfahrene Mechaniker, modernste Diagnosegeräte und transparente Preise. Keine Überraschungen auf der Rechnung.", "k11": "Kostenloses und unverbindliches Angebot", "k12": "12 Monate Garantie auf alle Reparaturen", "k13": "Ersatzwagen verfügbar", "k14": "Kostenloses Angebot anfordern", "k15": "530 Bewertungen auf Google", "k16": "Wir arbeiten an allen Marken", "k17": "Alles, was Ihr Auto <span>braucht</span>", "k18": "Von der regelmäßigen Wartung bis zu komplexen Reparaturen – wir betreuen Pkw und Transporter aller Marken.", "k19": "Inspektion und Wartung", "k20": "Inspektionen nach Herstellervorgaben, ohne Verlust der Garantie.", "k21": "Ölwechsel", "k22": "Hochwertiges Öl und Filter, passend zu den Vorgaben Ihres Motors.", "k23": "Bremsen", "k24": "Bremsbeläge, Bremsscheiben und Bremsflüssigkeit sicher geprüft und ersetzt.", "k25": "Reifen und Achsvermessung", "k26": "Reifenverkauf und -montage, Auswuchten und Achsvermessung.", "k27": "Elektronische Diagnose", "k28": "Auslesen von Fehlercodes und Warnleuchten mit Mehrmarken-Geräten.", "k29": "Klimaanlage", "k30": "Kältemittel nachfüllen, Lecksuche und Desinfektion der Anlage.", "k31": "Kupplung und Getriebe", "k32": "Austausch von Kupplung und Zweimassenschwungrad, Getriebereparatur.", "k33": "Vorbereitung auf die Hauptuntersuchung", "k34": "Wir prüfen alles vor der Hauptuntersuchung, damit Sie beim ersten Mal bestehen.", "k35": "Klare Preise, <span>keine Überraschungen</span>", "k36": "Richtpreise für die gefragtesten Leistungen. Der Endpreis wird immer im Angebot bestätigt, bevor wir beginnen.", "k37": "Öl- und Filterwechsel", "k38": "Inklusive Arbeitszeit und 20-Punkte-Check", "k39": "ab", "k40": "Große Inspektion", "k41": "Öl, Filter, Füllstände und allgemeiner Check-up", "k42": "Bremsbeläge", "k43": "Vorderachse, Teile und Arbeitszeit", "k44": "Wird angerechnet, wenn Sie die Reparatur bei uns machen", "k45": "Klimaanlagen-Service", "k46": "Inklusive Dichtheitsprüfung", "k47": "Achsvermessung", "k48": "Mit Protokoll vorher und nachher", "k49": "Preise inkl. MwSt., Richtwerte für Pkw. Sie können je nach Fahrzeugmodell variieren.", "k50": "Einfach, schnell und <span>transparent</span>", "k51": "Termin buchen", "k52": "Fordern Sie ein Angebot online, per WhatsApp oder telefonisch an und wählen Sie den passenden Tag.", "k53": "Diagnose", "k54": "Wir prüfen das Fahrzeug und erklären Ihnen, was nötig ist – bei Bedarf mit Fotos.", "k55": "Freigabe", "k56": "Wir reparieren erst, wenn Sie das Angebot freigegeben haben. Keine versteckten Kosten.", "k57": "Abholung", "k58": "Wir melden uns, sobald das Auto fertig, sauber und geprüft ist. Auf Wunsch bringen wir es Ihnen nach Hause.", "k59": "Jahre Erfahrung", "k60": "Warum AutoForte", "k61": "Vertrauen, das man sich <span>bei jeder Reparatur verdient.</span>", "k62": "Wir sind ein Familienbetrieb mit über 25 Jahren Erfahrung. Wir erklären alles verständlich und behandeln Ihr Auto wie unser eigenes.", "k63": "Zertifizierte Mechaniker", "k64": "Ständige Weiterbildung für alle Marken", "k65": "Qualitätsteile", "k66": "Original oder gleichwertige Qualität", "k67": "12 Monate Garantie", "k68": "Auf Teile und Arbeitszeit", "k69": "Hol- und Bringservice", "k70": "Wir holen Ihr Auto ab und bringen es zurück", "k71": "Was unsere <span>Kunden sagen</span>", "k72": "„Ehrlich und schnell. Eine andere Werkstatt wollte die Kupplung tauschen; hier fanden sie heraus, dass es nur ein Sensor war. Ich habe Hunderte Euro gespart.“", "k73": "„Sie haben die Inspektion gemacht und das Auto zu Hause abgeholt und zurückgebracht. Ich bekam Fotos von allen getauschten Teilen. Tadelloser Service.“", "k74": "„Mein Auto blieb auf der Autobahn liegen und der Abschleppwagen war in 40 Minuten da. Am nächsten Tag war es repariert.“", "k75": "Angebot", "k76": "Fordern Sie Ihr <span>kostenloses</span> Angebot an", "k77": "Sagen Sie uns, welches Auto Sie haben und was es braucht. Wir antworten per WhatsApp mit einer Schätzung und einem freien Termin.", "k78": "Panne unterwegs?", "k79": "Adresse", "k80": "Telefon", "k81": "Öffnungszeiten", "k82": "Montag bis Freitag", "k83": "Samstag", "k84": "Sonntag", "k85": "Geschlossen", "k86": "Angebotsanfrage", "k87": "Name", "k88": "Marke und Modell", "k89": "Baujahr", "k90": "Kennzeichen (optional)", "k91": "Leistung", "k92": "Sonstiges", "k93": "Wunschtermin", "k94": "Beschreiben Sie das Problem (optional)", "k95": "💬 Anfrage per WhatsApp senden", "k96": "Ihre Daten werden nur zur Beantwortung Ihrer Anfrage verwendet.", "k97": "Häufige Fragen", "k98": "Fragen? <span>Wir antworten</span>", "k99": "Verliere ich die Herstellergarantie, wenn ich die Inspektion hier mache?", "k100": "Nein. Wir halten uns an den Wartungsplan des Herstellers und verwenden Teile in der geforderten Qualität – Ihre Garantie bleibt bestehen.", "k101": "Wie lange dauert eine Inspektion?", "k102": "Eine normale Inspektion ist am selben Tag fertig. Größere Reparaturen hängen von den Teilen ab; die Dauer steht immer im Angebot.", "k103": "Haben Sie Ersatzwagen?", "k104": "Ja, je nach Verfügbarkeit und nach vorheriger Reservierung, für Reparaturen, die länger als einen Tag dauern.", "k105": "Welche Zahlungsarten akzeptieren Sie?", "k106": "Bargeld, Debitkarte, Kreditkarte und MB WAY. Größere Reparaturen können in Raten bezahlt werden.", "k107": "Freie Kfz-Werkstatt für alle Marken mit über 25 Jahren Erfahrung. Inspektionen, Reparaturen und Diagnose mit Garantie und transparenten Preisen.", "k108": "Navigation", "k109": "Folgen Sie uns", "k110": "Alle Rechte vorbehalten"}, "uk": {"k0": "Евакуатор цілодобово:", "k1": "Понеділок – п'ятниця 8:30–19:00 · Субота 9:00–13:00", "k2": "Послуги", "k3": "Ціни", "k4": "Як це працює", "k5": "Відгуки", "k6": "Контакти", "k7": "Отримати кошторис", "k8": "Автосервіс для всіх марок", "k9": "Ваше авто <span>в надійних руках.</span>", "k10": "Досвідчені механіки, найсучасніше діагностичне обладнання та прозорі ціни. Жодних сюрпризів у рахунку.", "k11": "Безкоштовний кошторис без зобов'язань", "k12": "Гарантія 12 місяців на всі ремонти", "k13": "Підмінний автомобіль", "k14": "Отримати безкоштовний кошторис", "k15": "530 відгуків у Google", "k16": "Працюємо з усіма марками", "k17": "Усе, що потрібно <span>вашому авто</span>", "k18": "Від планового обслуговування до найскладніших ремонтів — легкові та комерційні авто всіх марок.", "k19": "Техобслуговування", "k20": "ТО за регламентом виробника без втрати гарантії.", "k21": "Заміна оливи", "k22": "Якісна олива та фільтри відповідно до специфікацій вашого двигуна.", "k23": "Гальма", "k24": "Перевірка та безпечна заміна колодок, дисків і гальмівної рідини.", "k25": "Шини та розвал-сходження", "k26": "Продаж і монтаж шин, балансування та розвал-сходження.", "k27": "Комп'ютерна діагностика", "k28": "Зчитування помилок і контрольних ламп приладової панелі мультимарочним обладнанням.", "k29": "Кондиціонер", "k30": "Заправка, пошук витоків і дезінфекція системи.", "k31": "Зчеплення та коробка передач", "k32": "Заміна зчеплення та двомасового маховика, ремонт коробок.", "k33": "Підготовка до техогляду", "k34": "Перевіримо все перед техоглядом, щоб ви пройшли його з першого разу.", "k35": "Зрозумілі ціни <span>без сюрпризів</span>", "k36": "Орієнтовні ціни на найпопулярніші послуги. Остаточна ціна завжди підтверджується в кошторисі перед початком робіт.", "k37": "Заміна оливи та фільтра", "k38": "Включає роботу та перевірку за 20 пунктами", "k39": "від", "k40": "Повне ТО", "k41": "Олива, фільтри, рівні рідин і загальна перевірка", "k42": "Гальмівні колодки", "k43": "Передня вісь, запчастини та робота", "k44": "Віднімається, якщо ремонт робите в нас", "k45": "Заправка кондиціонера", "k46": "Включає перевірку на витоки", "k47": "Розвал-сходження", "k48": "Зі звітом до та після", "k49": "Ціни з ПДВ, орієнтовні для легкових авто. Можуть відрізнятися залежно від моделі.", "k50": "Просто, швидко та <span>прозоро</span>", "k51": "Запис", "k52": "Замовте кошторис онлайн, у WhatsApp чи телефоном і оберіть зручний день.", "k53": "Діагностика", "k54": "Оглянемо авто й пояснимо, що потрібно, за потреби — з фото.", "k55": "Погодження", "k56": "Починаємо ремонт лише після вашого погодження кошторису. Без прихованих витрат.", "k57": "Видача", "k58": "Повідомимо, коли авто буде готове, чисте й перевірене. Можемо також доставити його додому.", "k59": "років досвіду", "k60": "Чому AutoForte", "k61": "Довіра, яку ми <span>заслуговуємо</span> кожним ремонтом.", "k62": "Ми сімейний автосервіс із понад 25-річним досвідом. Пояснюємо все просто й ставимося до вашого авто як до власного.", "k63": "Сертифіковані механіки", "k64": "Постійне навчання для всіх марок", "k65": "Якісні запчастини", "k66": "Оригінальні або рівноцінні за якістю", "k67": "Гарантія 12 місяців", "k68": "На запчастини та роботу", "k69": "Забір і доставка", "k70": "Заберемо й повернемо ваше авто", "k71": "Що кажуть <span>наші клієнти</span>", "k72": "«Чесно й швидко. В іншому сервісі хотіли міняти зчеплення, а тут з'ясували, що це лише датчик. Я заощадив сотні євро.»", "k73": "«Провели ТО, забрали й повернули авто додому. Я отримала фото всього, що замінили. Бездоганний сервіс.»", "k74": "«Авто зупинилося на автомагістралі, а евакуатор приїхав за 40 хвилин. Наступного дня його вже відремонтували.»", "k75": "Кошторис", "k76": "Отримайте <span>безкоштовний</span> кошторис", "k77": "Розкажіть, яке у вас авто і що потрібно. Ми відповімо у WhatsApp з оцінкою та вільною датою.", "k78": "Зламалися в дорозі?", "k79": "Адреса", "k80": "Телефон", "k81": "Години роботи", "k82": "Понеділок – п'ятниця", "k83": "Субота", "k84": "Неділя", "k85": "Зачинено", "k86": "Запит на кошторис", "k87": "Ім'я", "k88": "Марка й модель", "k89": "Рік", "k90": "Номерний знак (необов'язково)", "k91": "Послуга", "k92": "Інше", "k93": "Бажана дата", "k94": "Опишіть проблему (необов'язково)", "k95": "💬 Надіслати запит у WhatsApp", "k96": "Ваші дані використовуються лише для відповіді на ваш запит.", "k97": "Поширені запитання", "k98": "Є запитання? <span>Ми відповімо</span>", "k99": "Чи втрачу я гарантію виробника, якщо пройду ТО у вас?", "k100": "Ні. Ми дотримуємося регламенту виробника й використовуємо запчастини потрібної якості, тож гарантія на ваше авто зберігається.", "k101": "Скільки триває ТО?", "k102": "Звичайне ТО готове того ж дня. Великі ремонти залежать від запчастин; строк ми завжди вказуємо в кошторисі.", "k103": "Чи є підмінний автомобіль?", "k104": "Так, за наявності та попереднього бронювання, для ремонтів, що тривають понад день.", "k105": "Які способи оплати ви приймаєте?", "k106": "Готівка, дебетова й кредитна картки та MB WAY. Великі ремонти можна оплатити частинами.", "k107": "Автосервіс для всіх марок із понад 25-річним досвідом. ТО, ремонт і діагностика з гарантією та прозорими цінами.", "k108": "Навігація", "k109": "Ми в соцмережах", "k110": "Усі права захищено"}, "ru": {"k0": "Эвакуатор круглосуточно:", "k1": "Понедельник – пятница 8:30–19:00 · Суббота 9:00–13:00", "k2": "Услуги", "k3": "Цены", "k4": "Как это работает", "k5": "Отзывы", "k6": "Контакты", "k7": "Получить смету", "k8": "Автосервис для всех марок", "k9": "Ваш автомобиль <span>в надёжных руках.</span>", "k10": "Опытные механики, самое современное диагностическое оборудование и прозрачные цены. Никаких сюрпризов в счёте.", "k11": "Бесплатная смета без обязательств", "k12": "Гарантия 12 месяцев на все ремонты", "k13": "Подменный автомобиль", "k14": "Получить бесплатную смету", "k15": "530 отзывов в Google", "k16": "Работаем со всеми марками", "k17": "Всё, что нужно <span>вашему авто</span>", "k18": "От планового обслуживания до самых сложных ремонтов — легковые и коммерческие автомобили всех марок.", "k19": "Техобслуживание", "k20": "ТО по регламенту производителя без потери гарантии.", "k21": "Замена масла", "k22": "Качественное масло и фильтры в соответствии со спецификациями вашего двигателя.", "k23": "Тормоза", "k24": "Проверка и безопасная замена колодок, дисков и тормозной жидкости.", "k25": "Шины и развал-схождение", "k26": "Продажа и монтаж шин, балансировка и развал-схождение.", "k27": "Компьютерная диагностика", "k28": "Считывание ошибок и контрольных ламп приборной панели мультимарочным оборудованием.", "k29": "Кондиционер", "k30": "Заправка, поиск утечек и дезинфекция системы.", "k31": "Сцепление и коробка передач", "k32": "Замена сцепления и двухмассового маховика, ремонт коробок.", "k33": "Подготовка к техосмотру", "k34": "Проверим всё перед техосмотром, чтобы вы прошли его с первого раза.", "k35": "Понятные цены <span>без сюрпризов</span>", "k36": "Ориентировочные цены на самые популярные услуги. Окончательная цена всегда подтверждается в смете перед началом работ.", "k37": "Замена масла и фильтра", "k38": "Включает работу и проверку по 20 пунктам", "k39": "от", "k40": "Полное ТО", "k41": "Масло, фильтры, уровни жидкостей и общая проверка", "k42": "Тормозные колодки", "k43": "Передняя ось, запчасти и работа", "k44": "Вычитается, если ремонт делаете у нас", "k45": "Заправка кондиционера", "k46": "Включает проверку на утечки", "k47": "Развал-схождение", "k48": "С отчётом до и после", "k49": "Цены с НДС, ориентировочные для легковых автомобилей. Могут отличаться в зависимости от модели.", "k50": "Просто, быстро и <span>прозрачно</span>", "k51": "Запись", "k52": "Закажите смету онлайн, в WhatsApp или по телефону и выберите удобный день.", "k53": "Диагностика", "k54": "Осмотрим автомобиль и объясним, что нужно, при необходимости — с фото.", "k55": "Согласование", "k56": "Начинаем ремонт только после того, как вы одобрите смету. Без скрытых расходов.", "k57": "Выдача", "k58": "Сообщим, когда автомобиль будет готов, чист и проверен. Можем также доставить его домой.", "k59": "лет опыта", "k60": "Почему AutoForte", "k61": "Доверие, которое мы <span>заслуживаем</span> каждым ремонтом.", "k62": "Мы семейный автосервис с более чем 25-летним опытом. Объясняем всё просто и относимся к вашему автомобилю как к своему.", "k63": "Сертифицированные механики", "k64": "Постоянное обучение по всем маркам", "k65": "Качественные запчасти", "k66": "Оригинальные или равноценные по качеству", "k67": "Гарантия 12 месяцев", "k68": "На запчасти и работу", "k69": "Забор и доставка", "k70": "Заберём и вернём ваш автомобиль", "k71": "Что говорят <span>наши клиенты</span>", "k72": "«Честно и быстро. В другом сервисе хотели менять сцепление, а здесь выяснили, что это всего лишь датчик. Я сэкономил сотни евро.»", "k73": "«Провели ТО, забрали и вернули машину домой. Я получила фото всего, что заменили. Безупречный сервис.»", "k74": "«Машина встала на автомагистрали, а эвакуатор приехал за 40 минут. На следующий день её уже отремонтировали.»", "k75": "Смета", "k76": "Получите <span>бесплатную</span> смету", "k77": "Расскажите, какой у вас автомобиль и что нужно. Мы ответим в WhatsApp с оценкой и свободной датой.", "k78": "Сломались в дороге?", "k79": "Адрес", "k80": "Телефон", "k81": "Часы работы", "k82": "Понедельник – пятница", "k83": "Суббота", "k84": "Воскресенье", "k85": "Закрыто", "k86": "Запрос сметы", "k87": "Имя", "k88": "Марка и модель", "k89": "Год", "k90": "Госномер (необязательно)", "k91": "Услуга", "k92": "Другое", "k93": "Желаемая дата", "k94": "Опишите проблему (необязательно)", "k95": "💬 Отправить заявку в WhatsApp", "k96": "Ваши данные используются только для ответа на ваш запрос.", "k97": "Частые вопросы", "k98": "Есть вопросы? <span>Мы ответим</span>", "k99": "Потеряю ли я гарантию производителя, если пройду ТО у вас?", "k100": "Нет. Мы соблюдаем регламент производителя и используем запчасти нужного качества, поэтому гарантия на ваш автомобиль сохраняется.", "k101": "Сколько длится ТО?", "k102": "Обычное ТО готово в тот же день. Крупный ремонт зависит от запчастей; срок мы всегда указываем в смете.", "k103": "Есть ли подменный автомобиль?", "k104": "Да, при наличии и по предварительному бронированию, для ремонтов дольше одного дня.", "k105": "Какие способы оплаты вы принимаете?", "k106": "Наличные, дебетовые и кредитные карты, а также MB WAY. Крупный ремонт можно оплатить в рассрочку.", "k107": "Автосервис для всех марок с более чем 25-летним опытом. ТО, ремонт и диагностика с гарантией и прозрачными ценами.", "k108": "Навигация", "k109": "Мы в соцсетях", "k110": "Все права защищены"}, "ja": {"k0": "24時間レッカー対応:", "k1": "月曜日〜金曜日 8:30–19:00 · 土曜日 9:00–13:00", "k2": "サービス", "k3": "料金", "k4": "ご利用の流れ", "k5": "お客様の声", "k6": "お問い合わせ", "k7": "見積もり依頼", "k8": "全メーカー対応の整備工場", "k9": "あなたの車を<span>安心してお任せください。</span>", "k10": "経験豊富な整備士、最新の診断機器、明確な料金。請求書で驚くことはありません。", "k11": "無料・義務なしのお見積もり", "k12": "すべての修理に12か月保証", "k13": "代車あり", "k14": "無料見積もりを依頼", "k15": "Googleレビュー530件", "k16": "全メーカーに対応", "k17": "あなたの車に<span>必要なすべてを</span>", "k18": "日常のメンテナンスから複雑な修理まで、全メーカーの乗用車と商用車に対応します。", "k19": "点検・メンテナンス", "k20": "メーカーの点検スケジュールに沿って整備。メーカー保証は失われません。", "k21": "オイル交換", "k22": "エンジンの仕様に合った高品質なオイルとフィルター。", "k23": "ブレーキ", "k24": "ブレーキパッド、ディスク、ブレーキ液を点検し、安全に交換します。", "k25": "タイヤ・アライメント", "k26": "タイヤの販売と取り付け、バランス調整、ホイールアライメント。", "k27": "電子診断", "k28": "全メーカー対応の機器で故障コードや警告灯を読み取ります。", "k29": "エアコン", "k30": "ガス補充、漏れ点検、システムの洗浄。", "k31": "クラッチ・トランスミッション", "k32": "クラッチやデュアルマスフライホイールの交換、トランスミッション修理。", "k33": "車検前点検", "k34": "定期検査の前にすべてを点検し、一度で合格できるようにします。", "k35": "明確な料金、<span>追加料金なし</span>", "k36": "人気サービスの目安料金です。最終的な料金は作業開始前に必ずお見積もりで確定します。", "k37": "オイル・フィルター交換", "k38": "工賃と20項目点検込み", "k39": "料金", "k40": "総合点検", "k41": "オイル、フィルター、液量、全体チェック", "k42": "ブレーキパッド", "k43": "前輪、部品代・工賃込み", "k44": "当店で修理する場合は差し引きます", "k45": "エアコンガス補充", "k46": "漏れテスト込み", "k47": "ホイールアライメント", "k48": "作業前後のレポート付き", "k49": "価格は税込で、乗用車の目安です。車種によって異なる場合があります。", "k50": "シンプル、スピーディー、<span>明朗会計</span>", "k51": "予約", "k52": "オンライン、WhatsApp、またはお電話で見積もりを依頼し、ご都合の良い日をお選びください。", "k53": "診断", "k54": "車両を点検し、必要な作業を、必要に応じて写真付きでご説明します。", "k55": "承認", "k56": "お見積もりを承認いただいてから修理を始めます。隠れた費用はありません。", "k57": "お渡し", "k58": "車の準備ができ、洗車・テスト済みになったらご連絡します。ご自宅へのお届けも可能です。", "k59": "年の実績", "k60": "AutoForteが選ばれる理由", "k61": "修理のたびに<span>積み重ねる</span>信頼。", "k62": "25年以上の実績を持つ家族経営の整備工場です。すべてをわかりやすく説明し、お客様の車を自分の車のように扱います。", "k63": "認定整備士", "k64": "全メーカーの継続研修", "k65": "高品質な部品", "k66": "純正品または同等品質", "k67": "12か月保証", "k68": "部品と工賃", "k69": "引き取り・納車", "k70": "お車の引き取りと納車に伺います", "k71": "<span>お客様の声</span>", "k72": "「誠実で早い。別の工場ではクラッチ交換と言われましたが、ここではセンサーだけの問題だとわかりました。数百ユーロ節約できました。」", "k73": "「点検をしてくれて、自宅まで車の引き取りと納車もしてくれました。交換した部品の写真も届きました。申し分ないサービスです。」", "k74": "「高速道路で車が止まってしまいましたが、40分でレッカーが来てくれました。翌日には修理が完了していました。」", "k75": "お見積もり", "k76": "<span>無料</span>見積もりを依頼", "k77": "車種と必要な作業を教えてください。WhatsAppで概算と空き日程をご連絡します。", "k78": "路上で故障しましたか?", "k79": "住所", "k80": "電話", "k81": "営業時間", "k82": "月曜日〜金曜日", "k83": "土曜日", "k84": "日曜日", "k85": "定休日", "k86": "見積もり依頼", "k87": "お名前", "k88": "メーカー・車種", "k89": "年式", "k90": "ナンバー(任意)", "k91": "サービス", "k92": "その他", "k93": "ご希望日", "k94": "症状をご記入ください(任意)", "k95": "💬 WhatsAppで依頼を送信", "k96": "お客様の情報はご依頼への返信にのみ使用します。", "k97": "よくあるご質問", "k98": "ご質問に<span>お答えします</span>", "k99": "こちらで点検するとメーカー保証が失われますか?", "k100": "いいえ。メーカーのメンテナンススケジュールに従い、必要な品質の部品を使用するため、保証はそのまま有効です。", "k101": "点検にはどのくらい時間がかかりますか?", "k102": "通常の点検は当日中に完了します。大きな修理は部品次第で、所要期間は必ずお見積もりに記載します。", "k103": "代車はありますか?", "k104": "はい。1日以上かかる修理の場合、空き状況に応じて事前予約で代車をご用意します。", "k105": "支払い方法は何がありますか?", "k106": "現金、デビットカード、クレジットカード、MB WAYがご利用いただけます。大きな修理は分割払いも可能です。", "k107": "25年以上の実績を持つ全メーカー対応の整備工場。保証付きで明朗会計の点検・修理・診断を行います。", "k108": "メニュー", "k109": "フォローする", "k110": "無断転載禁止"}, "zh": {"k0": "24小时道路救援:", "k1": "周一至周五 8:30–19:00 · 周六 9:00–13:00", "k2": "服务项目", "k3": "价格", "k4": "服务流程", "k5": "客户评价", "k6": "联系我们", "k7": "获取报价", "k8": "全品牌汽车维修厂", "k9": "您的爱车<span>交给我们放心。</span>", "k10": "经验丰富的技师、最先进的诊断设备和透明的价格。账单上绝无意外。", "k11": "免费报价,无任何义务", "k12": "所有维修提供12个月保修", "k13": "提供代步车", "k14": "获取免费报价", "k15": "Google上530条评价", "k16": "全品牌车型均可维修", "k17": "您的爱车<span>所需的一切</span>", "k18": "从日常保养到复杂维修,我们为各品牌乘用车和商用车提供服务。", "k19": "保养维护", "k20": "按照厂家保养计划进行,不影响原厂保修。", "k21": "更换机油", "k22": "优质机油和滤芯,符合您发动机的规格要求。", "k23": "刹车", "k24": "检查并安全更换刹车片、刹车盘和刹车油。", "k25": "轮胎与四轮定位", "k26": "轮胎销售与安装、动平衡和四轮定位。", "k27": "电脑诊断", "k28": "使用多品牌设备读取故障码和仪表盘警示灯。", "k29": "空调", "k30": "补充冷媒、检测泄漏并清洁空调系统。", "k31": "离合器与变速箱", "k32": "更换离合器和双质量飞轮,维修变速箱。", "k33": "年检前检查", "k34": "在定期检测前全面检查,确保一次通过。", "k35": "价格清晰,<span>绝无意外</span>", "k36": "最常见服务的参考价格。最终价格始终在开工前的报价中确认。", "k37": "更换机油和滤芯", "k38": "含工时费和20项检查", "k39": "起价", "k40": "全面保养", "k41": "机油、滤芯、液位和全车检查", "k42": "刹车片", "k43": "前轴,含配件和工时", "k44": "如在本店维修可抵扣", "k45": "空调冷媒加注", "k46": "含泄漏测试", "k47": "四轮定位", "k48": "提供定位前后报告", "k49": "价格含增值税,为乘用车参考价,可能因车型不同而有所差异。", "k50": "简单、快速、<span>透明</span>", "k51": "预约", "k52": "通过网站、WhatsApp或电话获取报价,并选择方便的日期。", "k53": "诊断", "k54": "检查车辆并向您说明需要做什么,必要时附照片。", "k55": "确认", "k56": "您确认报价后我们才开始维修。没有隐藏费用。", "k57": "交车", "k58": "车辆修好、清洁并测试完成后通知您。也可以送车上门。", "k59": "年经验", "k60": "为什么选择AutoForte", "k61": "每一次维修,<span>赢得</span>您的信任。", "k62": "我们是一家拥有25年以上经验的家族维修厂。我们用简单的方式说明一切,像对待自己的车一样对待您的车。", "k63": "认证技师", "k64": "持续进修各品牌技术", "k65": "优质配件", "k66": "原厂或同等品质", "k67": "12个月保修", "k68": "覆盖配件和工时", "k69": "上门取送车", "k70": "我们上门取车和送车", "k71": "<span>客户怎么说</span>", "k72": "“诚实又快速。另一家修理厂说要换离合器,这里查出只是一个传感器的问题。我省了几百欧元。”", "k73": "“他们做了保养,还上门取车、送车。换了哪些零件都发了照片给我。服务无可挑剔。”", "k74": "“车在高速公路上抛锚,救援车40分钟就到了。第二天就修好了。”", "k75": "报价", "k76": "获取<span>免费</span>报价", "k77": "告诉我们您的车型和需求。我们会通过WhatsApp回复估价和可预约的日期。", "k78": "路上抛锚了?", "k79": "地址", "k80": "电话", "k81": "营业时间", "k82": "周一至周五", "k83": "周六", "k84": "周日", "k85": "休息", "k86": "报价申请", "k87": "姓名", "k88": "品牌和型号", "k89": "年份", "k90": "车牌号(可选)", "k91": "服务项目", "k92": "其他", "k93": "期望日期", "k94": "描述问题(可选)", "k95": "💬 通过WhatsApp发送申请", "k96": "您的信息仅用于回复您的申请。", "k97": "常见问题", "k98": "有疑问?<span>我们来解答</span>", "k99": "在这里保养会失去原厂保修吗?", "k100": "不会。我们遵循厂家保养计划,使用符合要求的配件,您的车辆保修依然有效。", "k101": "保养需要多长时间?", "k102": "常规保养当天即可完成。大修取决于配件,我们会在报价中注明工期。", "k103": "有代步车吗?", "k104": "有。对于超过一天的维修,可视情况提前预约代步车。", "k105": "接受哪些付款方式?", "k106": "接受现金、借记卡、信用卡和MB WAY。较大金额的维修可分期付款。", "k107": "拥有25年以上经验的全品牌汽车维修厂。提供有保修、价格透明的保养、维修和诊断服务。", "k108": "导航", "k109": "关注我们", "k110": "版权所有"}};
+  const LANG_FLAGS = {"pt": "https://flagcdn.com/w40/pt.png", "en": "https://flagcdn.com/w40/gb.png", "es": "https://flagcdn.com/w40/es.png", "fr": "https://flagcdn.com/w40/fr.png", "it": "https://flagcdn.com/w40/it.png", "de": "https://flagcdn.com/w40/de.png", "uk": "https://flagcdn.com/w40/ua.png", "ru": "https://flagcdn.com/w40/ru.png", "ja": "https://flagcdn.com/w40/jp.png", "zh": "https://flagcdn.com/w40/cn.png"};
+  const ptText = {};
+  document.querySelectorAll('[data-i18n]').forEach(el => { ptText[el.dataset.i18n] = el.innerHTML; });
+  const langBox = document.getElementById('lang');
+  function setLang(lang) {
+    if (lang !== 'pt' && !I18N[lang]) lang = 'pt';
+    const dict = I18N[lang] || {};
+    document.querySelectorAll('[data-i18n]').forEach(el => { const k = el.dataset.i18n; el.innerHTML = dict[k] ?? ptText[k]; });
+    document.documentElement.lang = lang === 'pt' ? 'pt-PT' : lang;
+    document.getElementById('langFlag').src = LANG_FLAGS[lang];
+    document.getElementById('langCode').textContent = lang.toUpperCase();
+    document.querySelectorAll('#langMenu button').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    try { localStorage.setItem('lang', lang); } catch (e) {}
+  }
+  document.getElementById('langBtn').addEventListener('click', e => {
+    e.stopPropagation();
+    const open = langBox.classList.toggle('open');
+    e.currentTarget.setAttribute('aria-expanded', open);
+  });
+  document.querySelectorAll('#langMenu button').forEach(b => b.addEventListener('click', () => { setLang(b.dataset.lang); langBox.classList.remove('open'); }));
+  document.addEventListener('click', () => langBox.classList.remove('open'));
+  let saved = null;
+  try { saved = localStorage.getItem('lang'); } catch (e) {}
+  setLang(saved || (navigator.language || 'pt').slice(0, 2));
+</script>
+</body>
+</html>
